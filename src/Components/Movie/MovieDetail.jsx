@@ -117,7 +117,7 @@ const MovieDetail = () => {
             </div>
             <div className="btn">
               {isInStar ? (
-                <button onClick={starredHandler}>Remove Starred</button>
+                <button onClick={starredHandler}>UnStar</button>
               ) : (
                 <button onClick={starredHandler}>Star</button>
               )}

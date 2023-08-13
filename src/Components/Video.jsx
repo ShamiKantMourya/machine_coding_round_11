@@ -73,7 +73,7 @@ const Video = ({ video }) => {
         </div>
         <div className="movie-button">
           {isInStar ? (
-            <button onClick={starredHandler}>Remove Starred</button>
+            <button onClick={starredHandler}>UnStar</button>
           ) : (
             <button onClick={starredHandler}>Star</button>
           )}
