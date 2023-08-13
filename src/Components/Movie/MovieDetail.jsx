@@ -5,11 +5,19 @@ import { movies } from "../../Data/Database";
 import Header from "../Header/Header";
 import "./MovieDetail.css";
 import { DataContext } from "../../Context/DataContext";
-import { addWatchlist, addStarred } from "../toast";
+import {
+  addWatchlist,
+  addStarred,
+  removeWatchlist,
+  removeStarred,
+} from "../toast";
 const MovieDetail = () => {
   const { id } = useParams();
-  const { addDataDispatch } = useContext(DataContext);
+  const { addDataDispatch, watch_list, star } = useContext(DataContext);
   const singleVideo = movies?.find((movie) => movie.id === Number(id));
+
+  const isInWatchlater = watch_list?.some((movie) => movie.id === Number(id));
+  const isInStar = star?.some((movie) => movie.id === Number(id));
 
   const {
     title,
@@ -23,20 +31,36 @@ const MovieDetail = () => {
     imageURL,
   } = singleVideo;
 
-  const addToWatchlistHandler = () => {
-    addDataDispatch({
-      type: "add_to_watchlist",
-      payload: singleVideo,
-    });
-    addWatchlist();
+  const watchlistHandler = () => {
+    if (isInWatchlater) {
+      addDataDispatch({
+        type: "remove_watchlist",
+        payload: id,
+      });
+      removeWatchlist();
+    } else {
+      addDataDispatch({
+        type: "add_to_watchlist",
+        payload: singleVideo,
+      });
+      addWatchlist();
+    }
   };
 
-  const addToStarred = () => {
-    addDataDispatch({
-      type: "add_to_starred",
-      payload: singleVideo,
-    });
-    addStarred();
+  const starredHandler = () => {
+    if (isInStar) {
+      addDataDispatch({
+        type: "remove_starred",
+        payload: id,
+      });
+      removeStarred();
+    } else {
+      addDataDispatch({
+        type: "add_to_starred",
+        payload: singleVideo,
+      });
+      addStarred();
+    }
   };
   return (
     <div className="moviedetails">
@@ -85,10 +109,18 @@ const MovieDetail = () => {
           ))}
           <div className="movie-detail-button">
             <div className="btn">
-              <button onClick={addToWatchlistHandler}>Watchlist</button>
+              {isInWatchlater ? (
+                <button onClick={watchlistHandler}>Remove Watchlist</button>
+              ) : (
+                <button onClick={watchlistHandler}>Add Watchlist</button>
+              )}
             </div>
             <div className="btn">
-              <button onClick={addToStarred}>Star</button>
+              {isInStar ? (
+                <button onClick={starredHandler}>Remove Starred</button>
+              ) : (
+                <button onClick={starredHandler}>Star</button>
+              )}
             </div>
           </div>
         </div>

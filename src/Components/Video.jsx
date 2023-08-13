@@ -3,26 +3,50 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { DataContext } from "../Context/DataContext";
-import { addWatchlist, addStarred } from "./toast";
+import {
+  addWatchlist,
+  addStarred,
+  removeWatchlist,
+  removeStarred,
+} from "./toast";
 
 const Video = ({ video }) => {
   const { addDataDispatch, watch_list, star } = useContext(DataContext);
-  const { imageURL, title, summary } = video;
+  const { id, imageURL, title, summary } = video;
 
-  const addToWatchlistHandler = () => {
-    addDataDispatch({
-      type: "add_to_watchlist",
-      payload: video,
-    });
-    addWatchlist();
+  const isInWatchlater = watch_list?.some((movie) => movie.id === Number(id));
+  const isInStar = star?.some((movie) => movie.id === Number(id));
+
+  const watchlistHandler = () => {
+    if (isInWatchlater) {
+      addDataDispatch({
+        type: "remove_watchlist",
+        payload: id,
+      });
+      removeWatchlist();
+    } else {
+      addDataDispatch({
+        type: "add_to_watchlist",
+        payload: video,
+      });
+      addWatchlist();
+    }
   };
 
-  const addToStarred = () => {
-    addDataDispatch({
-      type: "add_to_starred",
-      payload: video,
-    });
-    addStarred();
+  const starredHandler = () => {
+    if (isInStar) {
+      addDataDispatch({
+        type: "remove_starred",
+        payload: id,
+      });
+      removeStarred();
+    } else {
+      addDataDispatch({
+        type: "add_to_starred",
+        payload: video,
+      });
+      addStarred();
+    }
   };
 
   return (
@@ -41,10 +65,18 @@ const Video = ({ video }) => {
 
       <div className="movie-btn-flex">
         <div className="movie-button">
-          <button onClick={addToWatchlistHandler}>Watchlist</button>
+          {isInWatchlater ? (
+            <button onClick={watchlistHandler}>Remove Watchlist</button>
+          ) : (
+            <button onClick={watchlistHandler}>Add Watchlist</button>
+          )}
         </div>
         <div className="movie-button">
-          <button onClick={addToStarred}>Star</button>
+          {isInStar ? (
+            <button onClick={starredHandler}>Remove Starred</button>
+          ) : (
+            <button onClick={starredHandler}>Star</button>
+          )}
         </div>
       </div>
     </>

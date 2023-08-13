@@ -30,4 +30,14 @@ export const addStarred = () => {
     },
   });
 };
+export const removeStarred = () => {
+  toast("Remove From Starred", {
+    style: {
+      fontSize: "14px",
+      borderRadius: "10px",
+      background: "red",
+      color: "whitesmoke",
+    },
+  });
+};
 
