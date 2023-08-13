@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { DataContext } from "../Context/DataContext";
 import { addWatchlist, addStarred } from "./toast";
@@ -27,7 +28,9 @@ const Video = ({ video }) => {
   return (
     <>
       <div className="movie-image-box">
-        <img src={imageURL} alt="movie" />
+        <Link to={`/movie/${video.id}`}>
+          <img src={imageURL} alt="movie" />
+        </Link>
       </div>
       <div className="movie-name">
         <h3>{title}</h3>
@@ -35,6 +38,7 @@ const Video = ({ video }) => {
       <div className="movie-description">
         <p>{summary}</p>
       </div>
+
       <div className="movie-btn-flex">
         <div className="movie-button">
           <button onClick={addToWatchlistHandler}>Watchlist</button>
