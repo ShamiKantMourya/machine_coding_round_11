@@ -1,0 +1,43 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  height: 3rem;
+  width: 100%;
+}
+.filter-movie-text {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 20px;
+  opacity: 0.5;
+}
+.filter select {
+  display: flex;
+  height: 1.5rem;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+.add-new-movie-btn {
+  display: flex;
+  height: 1.6rem;
+  background-color: blueviolet;
+  border-radius: 5px;
+}
+.add-new-movie-btn button {
+  display: flex;
+  align-items: center;
+  padding: 2px 5px;
+  border: none;
+  outline: none;
+  background: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.add-new-movie-btn button:hover{
+  color: blueviolet;
+}
+.add-new-movie-btn:hover {
+  background-color: white;
+}

@@ -1,0 +1,79 @@
+.landingPage{
+    width: 100%;
+    height: 100vh;
+}
+.movie-list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+}
+.movie-detail-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25rem;
+    width: 15rem;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    margin: 5px 5px;
+}
+.movie-detail-list a{
+    text-decoration: none;
+}
+.movie-image-box{
+    display: flex;
+    height: 15rem;
+    width: 100%;
+}
+.movie-image-box img{
+    display: flex;
+    width: 100%;
+    height: 15rem;
+    border-radius: 10px;
+    padding: 5px 5px;
+}
+.movie-name{
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.movie-description{
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    padding: 0px 2px;
+}
+.movie-btn-flex{
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+    height: 3rem;
+    margin-bottom: 2px;
+}
+.movie-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.5rem;
+    padding: 2px 0px;
+    background-color: blueviolet;
+    border-radius: 5px;
+}
+.movie-button button{
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 2px 5px;
+    font-weight: 600;
+}
+.movie-button:hover{
+background-color: white;
+}
+.movie-button button:hover{
+    color: blueviolet;
+}
